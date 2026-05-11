@@ -1,5 +1,5 @@
 (function () {
-  const { experiments, questions, flashcards, formulaQuestions } = window.CHEM202_DATA;
+  const { experiments, questions, flashcards, formulaQuestions, missingInfo } = window.CHEM202_DATA;
   const state = {
     exp: 1,
     mode: "practice",
@@ -18,6 +18,7 @@
     modeReview: document.getElementById("modeReview"),
     modeFlashcards: document.getElementById("modeFlashcards"),
     modeFormula: document.getElementById("modeFormula"),
+    modeMissing: document.getElementById("modeMissing"),
     typeFilter: document.getElementById("typeFilter"),
     shuffleBtn: document.getElementById("shuffleBtn"),
     resetBtn: document.getElementById("resetBtn"),
@@ -89,6 +90,7 @@
     els.modeReview.classList.toggle("active", state.mode === "review");
     els.modeFlashcards.classList.toggle("active", state.mode === "flashcards");
     els.modeFormula.classList.toggle("active", state.mode === "formula");
+    els.modeMissing.classList.toggle("active", state.mode === "missing");
   }
 
   function visibleQuestions() {
@@ -125,6 +127,10 @@
     }
     if (state.mode === "formula") {
       renderFormulaPractice();
+      return;
+    }
+    if (state.mode === "missing") {
+      renderMissingInfo();
       return;
     }
 
@@ -174,6 +180,40 @@
     }
 
     els.list.innerHTML = items.map(renderFormulaCard).join("");
+  }
+
+  function renderMissingInfo() {
+    const items = missingInfo.filter((item) => item.exp === state.exp);
+    els.questionCount.textContent = items.length;
+    els.answeredCount.textContent = "Compare";
+    els.wrongCount.textContent = "-";
+    els.missedSummary.innerHTML = `<div class="missed-panel">
+      <h3>Screenshot-only notes</h3>
+      <p>These are the lab-note details that appeared in the screenshots but were missing, shorter, or less explicit in the PDF. Homework 5 is intentionally ignored.</p>
+    </div>`;
+
+    if (!items.length) {
+      els.list.innerHTML = `<div class="empty">No extra screenshot-only notes found for this experiment.</div>`;
+      return;
+    }
+
+    els.list.innerHTML = items.map(renderMissingCard).join("");
+  }
+
+  function renderMissingCard(item, index) {
+    return `<article class="question-card missing-card">
+      <div class="question-head">
+        <div>
+          <p class="question-meta">MISSING INFO ${index + 1}</p>
+          <h3>${escapeHtml(item.title)}</h3>
+        </div>
+        <span class="badge">Screenshots</span>
+      </div>
+      <ul class="missing-list">
+        ${item.points.map((point) => `<li>${escapeHtml(point)}</li>`).join("")}
+      </ul>
+      <p class="missing-note">${escapeHtml(item.note)}</p>
+    </article>`;
   }
 
   function renderFormulaCard(item) {
@@ -538,6 +578,11 @@
 
   els.modeFormula.addEventListener("click", () => {
     state.mode = "formula";
+    render();
+  });
+
+  els.modeMissing.addEventListener("click", () => {
+    state.mode = "missing";
     render();
   });
 

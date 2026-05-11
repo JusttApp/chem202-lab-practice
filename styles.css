@@ -208,7 +208,7 @@ small {
 
 .segmented {
   display: inline-grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -328,6 +328,30 @@ small {
   padding: 7px 10px;
   font-size: 13px;
   font-weight: 800;
+}
+
+.missing-card {
+  border-left: 4px solid var(--warn);
+}
+
+.missing-list {
+  display: grid;
+  gap: 10px;
+  margin: 16px 0 0;
+  padding-left: 20px;
+  line-height: 1.55;
+}
+
+.missing-list li::marker {
+  color: var(--warn);
+}
+
+.missing-note {
+  margin: 14px 0 0;
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+  color: var(--muted);
+  line-height: 1.5;
 }
 
 .question-list {

@@ -345,5 +345,96 @@
     { id: "calc-6-04", exp: 6, concept: "W is benzene mass", prompt: "If Kf = 2.56 and Delta T = 2 C, calculate W from Kf = (W * 128 * Delta T) / 1000.", answer: 10, unit: "g", tolerance: 0.01, work: "W = (Kf * 1000) / (128 * Delta T) = 2.56 * 1000 / 256 = 10 g.", explanation: "W is the benzene mass in the source formula." },
   ];
 
-  window.CHEM202_DATA = { experiments, questions, flashcards, formulaQuestions };
+  const missingInfo = [
+    {
+      exp: 1,
+      title: "Extra definitions from screenshots",
+      points: [
+        "Acids release positive hydrogen ions H+ when dissolved in water.",
+        "Bases have a bitter taste and slippery/soapy feel.",
+        "Bases turn litmus paper blue.",
+        "Bases release hydroxide ions OH- when dissolved in water.",
+        "Salts are neutral chemical compounds formed from acid-base reactions.",
+        "Salts contain a positive ion other than H+ and a negative ion other than OH-.",
+        "Aqueous solutions are homogeneous mixtures formed by dissolving a solid, liquid, or gas in water.",
+      ],
+      note: "The PDF has shorter acid/base/salt/aqueous-solution definitions. These screenshot notes add practical description and litmus behavior.",
+    },
+    {
+      exp: 1,
+      title: "Exothermic and endothermic details",
+      points: [
+        "Exothermic reaction: chemical reaction that releases heat to the surroundings.",
+        "In an exothermic reaction, the tube feels hotter.",
+        "Endothermic reaction: chemical reaction that absorbs heat from the surroundings.",
+        "In an endothermic reaction, the tube feels colder.",
+      ],
+      note: "The PDF mentions q sign for heat release/absorption, but the screenshots add the physical tube-feel explanation.",
+    },
+    {
+      exp: 1,
+      title: "Reaction type wording",
+      points: [
+        "Combination/union reaction: two or more elements react to form one compound.",
+        "Decomposition reaction: one compound breaks into two or more elements.",
+        "Substitution/replacement reaction: one element replaces another element in a compound.",
+      ],
+      note: "The PDF lists reaction types, but the screenshots include these short definitions.",
+    },
+    {
+      exp: 2,
+      title: "Worked board example for concentration/molarity",
+      points: [
+        "The board example shows M = n / V_L.",
+        "The board example uses n = mass / M.wt.",
+        "Example values shown: mass = 30 g and molecular weight = 18.",
+        "Example volumes shown: V1 = 50 mL and V2 = 80 mL.",
+        "Delta V = 30 mL.",
+        "Mass from volume and density shown as m = Vd = 30 * 1.",
+      ],
+      note: "The PDF includes the formulas, but not this classroom worked example.",
+    },
+    {
+      exp: 4,
+      title: "Extra solubility/lab-four notes",
+      points: [
+        "The screenshots label the fourth lab with the water cycle / الدورة المائية.",
+        "The screenshot says the instructor may ask for 3 or 4 factors affecting solubility.",
+        "Stirring examples shown: shaking, glass rod, and magnetic stirring.",
+        "Salt types are described as organic and inorganic.",
+      ],
+      note: "The PDF covers the main solubility definition and factors, but does not include these classroom/exam hints.",
+    },
+    {
+      exp: 4,
+      title: "Possible unit conflict to verify",
+      points: [
+        "Screenshot wording appears to say the solubility unit is mL per gram.",
+        "The PDF says the solubility unit is g/mL.",
+      ],
+      note: "Treat this as a verification point with the instructor because the PDF and screenshot wording may conflict.",
+    },
+    {
+      exp: 5,
+      title: "Conductivity wording from screenshots",
+      points: [
+        "Electrolyte solution is described as a solution that conducts electric current.",
+        "The screenshot wording for 5% NaCl says each 100 mL of solution contains 5 g NaCl.",
+        "Temperature and conductivity are described as inverse because increased temperature causes evaporation and reduces conductivity.",
+      ],
+      note: "This mostly matches the PDF, but the screenshot phrasing is useful for direct review.",
+    },
+    {
+      exp: 6,
+      title: "Extra freezing-point details",
+      points: [
+        "T2 is described as frozen benzene with 1 gram of the second substance.",
+        "The screenshot/board shows chemical structures for benzene, naphthalene, and acetone.",
+        "The board labels W as the mass of 10 mL benzene.",
+      ],
+      note: "The PDF gives the formulas and says benzene plus naphthalene solution; the screenshot adds the 1 gram detail and visual structures.",
+    },
+  ];
+
+  window.CHEM202_DATA = { experiments, questions, flashcards, formulaQuestions, missingInfo };
 })();
