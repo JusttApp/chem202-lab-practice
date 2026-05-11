@@ -183,21 +183,38 @@
   }
 
   function renderMissingInfo() {
-    const items = missingInfo.filter((item) => item.exp === state.exp);
-    els.questionCount.textContent = items.length;
+    const grouped = experiments
+      .map((exp) => ({
+        exp,
+        items: missingInfo.filter((item) => item.exp === exp.id),
+      }))
+      .filter((group) => group.items.length);
+
+    const count = grouped.reduce((total, group) => total + group.items.length, 0);
+    els.questionCount.textContent = count;
     els.answeredCount.textContent = "Compare";
     els.wrongCount.textContent = "-";
     els.missedSummary.innerHTML = `<div class="missed-panel">
       <h3>Screenshot-only notes</h3>
-      <p>These are the lab-note details that appeared in the screenshots but were missing, shorter, or less explicit in the PDF. Homework 5 is intentionally ignored.</p>
+      <p>These are grouped by experiment and include lab-note details that were missing, shorter, or less explicit in the PDF. Homework 5 is intentionally ignored.</p>
     </div>`;
 
-    if (!items.length) {
-      els.list.innerHTML = `<div class="empty">No extra screenshot-only notes found for this experiment.</div>`;
+    if (!grouped.length) {
+      els.list.innerHTML = `<div class="empty">No extra screenshot-only notes found.</div>`;
       return;
     }
 
-    els.list.innerHTML = items.map(renderMissingCard).join("");
+    els.list.innerHTML = grouped.map(renderMissingGroup).join("");
+  }
+
+  function renderMissingGroup(group) {
+    return `<section class="missing-group">
+      <div class="missing-exp-title">
+        <p class="question-meta">EXPERIMENT ${group.exp.id}</p>
+        <h3>${escapeHtml(group.exp.shortTitle)}</h3>
+      </div>
+      ${group.items.map((item, index) => renderMissingCard(item, index)).join("")}
+    </section>`;
   }
 
   function renderMissingCard(item, index) {

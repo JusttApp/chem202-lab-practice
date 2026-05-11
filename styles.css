@@ -334,6 +334,30 @@ small {
   border-left: 4px solid var(--warn);
 }
 
+.missing-group {
+  display: grid;
+  gap: 12px;
+}
+
+.missing-group + .missing-group {
+  margin-top: 10px;
+}
+
+.missing-exp-title {
+  border-bottom: 1px solid var(--line);
+  padding: 18px 2px 8px;
+}
+
+.missing-exp-title h3,
+.missing-exp-title p {
+  margin: 0;
+}
+
+.missing-exp-title h3 {
+  margin-top: 4px;
+  font-size: 22px;
+}
+
 .missing-list {
   display: grid;
   gap: 10px;
