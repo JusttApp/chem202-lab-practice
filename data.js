@@ -281,6 +281,66 @@
   multi(6, "Select all correct components of the Kf formula.", ["W", "128", "Delta T", "division by 1000", "Cp = 4.18"], ["W", "128", "Delta T", "division by 1000"], "The Kf formula uses W, 128, Delta T, and division by 1000; Cp belongs to Experiment 1.");
   mcq(6, "Which trap reverses the source definitions of T1 and T2?", ["Saying T1 is solution and T2 is pure benzene", "Saying T1 is pure benzene and T2 is solution", "Using C6H6 for benzene", "Including 128 in Kf"], "Saying T1 is solution and T2 is pure benzene", "The file defines T1 as pure benzene and T2 as benzene plus naphthalene solution.");
 
+  function missingSource(exp) {
+    return `Source: screenshot-only missing notes, Experiment ${exp}.`;
+  }
+
+  function missMcq(exp, prompt, options, answer, explanation) {
+    add(exp, "mcq", prompt, { options, answer, explanation, source: missingSource(exp) });
+  }
+
+  function missTf(exp, prompt, answer, explanation) {
+    add(exp, "tf", prompt, { answer, explanation, source: missingSource(exp) });
+  }
+
+  function missFill(exp, prompt, answers, displayAnswer, explanation) {
+    add(exp, "fill", prompt, { answers, displayAnswer, explanation, source: missingSource(exp) });
+  }
+
+  function missMulti(exp, prompt, options, answers, explanation) {
+    add(exp, "multi", prompt, { options, answers, explanation, source: missingSource(exp) });
+  }
+
+  function missMatching(exp, prompt, pairs, explanation) {
+    add(exp, "matching", prompt, { pairs, explanation, source: missingSource(exp) });
+  }
+
+  missMcq(1, "According to the screenshot-only notes, acids release which ion when dissolved in water?", ["H+", "OH-", "Na+", "CO3-"], "H+", "The screenshots add that acids release positive hydrogen ions H+ when dissolved in water.");
+  missMcq(1, "According to the screenshot-only notes, bases turn litmus paper what color?", ["Blue", "Red", "Yellow", "Colorless"], "Blue", "The screenshots state that bases turn litmus paper blue.");
+  missMulti(1, "Select all base properties added by the screenshots.", ["bitter taste", "slippery/soapy feel", "turn litmus blue", "release OH- in water", "release H+ in water"], ["bitter taste", "slippery/soapy feel", "turn litmus blue", "release OH- in water"], "The screenshot-only notes add bitter taste, slippery/soapy feel, litmus turning blue, and OH- release for bases.");
+  missTf(1, "The screenshot-only notes say salts are neutral compounds formed from acid-base reactions.", true, "This salt wording appears in the screenshots and is more detailed than the PDF.");
+  missMcq(1, "In the screenshot-only notes, a salt contains which ions?", ["A positive ion other than H+ and a negative ion other than OH-", "Only H+ and OH-", "Only neutral atoms", "Only two positive ions"], "A positive ion other than H+ and a negative ion other than OH-", "The screenshots specify that salts contain a positive ion not H+ and a negative ion not OH-.");
+  missMulti(1, "The screenshot-only notes say aqueous solutions can come from dissolving which types of substances in water?", ["solid", "liquid", "gas", "metal rod", "litmus paper only"], ["solid", "liquid", "gas"], "The added note defines aqueous solutions as homogeneous mixtures from dissolving a solid, liquid, or gas in water.");
+  missMcq(1, "What physical feeling is linked to an exothermic reaction in the screenshot notes?", ["The tube feels hotter", "The tube feels colder", "The tube disappears", "The solution becomes nonconductive"], "The tube feels hotter", "The screenshots explain that exothermic reactions release heat, so the tube feels hotter.");
+  missMcq(1, "What physical feeling is linked to an endothermic reaction in the screenshot notes?", ["The tube feels colder", "The tube feels hotter", "The litmus turns blue", "The salt becomes NaCl"], "The tube feels colder", "The screenshots explain that endothermic reactions absorb heat, so the tube feels colder.");
+  missMatching(1, "Match the screenshot-only reaction wording to its definition.", [{ left: "Combination/union", right: "Two or more elements form one compound" }, { left: "Decomposition", right: "One compound breaks into two or more elements" }, { left: "Substitution/replacement", right: "One element replaces another in a compound" }], "The screenshots include short definitions for these reaction types.");
+  missFill(1, "The screenshot-only notes say an exothermic reaction releases heat to the ____.", ["surroundings", "environment"], "surroundings", "The added note says exothermic reactions release heat to the surroundings.");
+
+  missMcq(2, "In the board example, V1 = 50 mL and V2 = 80 mL. What is Delta V?", ["30 mL", "130 mL", "50 mL", "80 mL"], "30 mL", "The screenshot board example shows Delta V = 30 mL.");
+  missFill(2, "The board example uses mass = 30 g and molecular weight = 18. Complete n = ____ / 18.", ["30", "30 g"], "30", "The screenshot board example labels the mass as 30 g and uses n = mass / M.wt.");
+  missMcq(2, "The board example shows m = Vd = 30 * 1. What value does that give for mass?", ["30", "31", "18", "80"], "30", "The board shows m = Vd = 30 * 1, giving 30.");
+
+  missTf(4, "The handwritten notes say temperature and solubility have a direct relationship.", true, "The new screenshot states that as temperature increases, solubility increases.");
+  missMcq(4, "According to the handwritten notes, what happens to solubility when temperature increases?", ["Solubility increases", "Solubility decreases", "Solubility becomes zero", "Solubility changes to molarity"], "Solubility increases", "The handwritten note says the relation is direct: as temperature increases, solubility increases.");
+  missMcq(4, "The screenshot-only lab note says the instructor may ask for how many solubility factors?", ["3 or 4", "1 only", "10 exactly", "None"], "3 or 4", "The screenshot says the instructor may ask for 3 or 4 factors affecting solubility.");
+  missMulti(4, "Select all stirring types shown in the screenshot-only notes.", ["shaking", "glass rod", "magnetic stirring", "centrifuge only", "litmus paper"], ["shaking", "glass rod", "magnetic stirring"], "The screenshots list shaking, glass rod, and magnetic stirring as stirring types.");
+  missMatching(4, "Match each salt example from the handwritten notes to its type.", [{ left: "NaCl", right: "simple salt" }, { left: "Ca(CO3)2", right: "complex salt" }, { left: "CH3COONa", right: "organic salt" }], "These salt examples appear in the handwritten screenshot and are not listed in the PDF.");
+  missMulti(4, "Select all factors affecting solubility repeated in the handwritten notes.", ["temperature", "amount of solute", "amount of solvent", "nature/type of solute", "type of stirring", "beta decay"], ["temperature", "amount of solute", "amount of solvent", "nature/type of solute", "type of stirring"], "The handwritten notes repeat these as solubility factors.");
+  missMcq(4, "Which salt example was added by the handwritten notes as an organic salt?", ["CH3COONa", "NaCl", "Ca(CO3)2", "H2O"], "CH3COONa", "The handwritten notes identify CH3COONa as an organic salt.");
+  missMcq(4, "Which salt example was added by the handwritten notes as a simple salt?", ["NaCl", "CH3COONa", "Ca(CO3)2", "C6H6"], "NaCl", "The handwritten notes identify NaCl as a simple salt.");
+  missMcq(4, "Which salt example was added by the handwritten notes as a complex salt?", ["Ca(CO3)2", "NaCl", "CH3COONa", "CH3COCH3"], "Ca(CO3)2", "The handwritten notes list Ca(CO3)2 as a complex salt.");
+
+  missMcq(5, "What nuance about temperature and conductivity is added by the handwritten notes?", ["Conductivity may increase briefly, then evaporation lowers it", "Conductivity never changes with temperature", "Conductivity only depends on litmus paper", "Temperature always makes conductivity zero instantly"], "Conductivity may increase briefly, then evaporation lowers it", "The handwritten note says conductivity increases for a short time as temperature rises, then evaporation happens and conductivity decreases.");
+  missMatching(5, "Match each concentration form listed in the handwritten notes.", [{ left: "w/w", right: "weight/weight" }, { left: "v/v", right: "volume/volume" }, { left: "w/v", right: "weight/volume" }], "The handwritten notes list weight/weight, volume/volume, and weight/volume as concentration forms.");
+  missMcq(5, "The handwritten notes write 5% NaCl preparation as which mixture?", ["95% distilled water + 5% NaCl", "50% water + 50% NaCl", "5% water + 95% NaCl", "100% NaCl only"], "95% distilled water + 5% NaCl", "The screenshot writes the 5% NaCl preparation as 95% distilled water plus 5% NaCl.");
+  missFill(5, "The handwritten notes identify NaCl as sodium ____.", ["chloride"], "chloride", "The new screenshot explicitly names NaCl as sodium chloride.");
+  missTf(5, "The screenshot-only notes say heating can cause evaporation that lowers conductivity.", true, "The notes say increased temperature causes evaporation and conductivity decreases.");
+  missMcq(5, "Which concentration form means weight divided by volume?", ["w/v", "w/w", "v/v", "T2 - T1"], "w/v", "The handwritten notes list weight/volume as one of the concentration forms.");
+
+  missMcq(6, "What extra detail does the screenshot add about T2?", ["It is frozen benzene with 1 gram of the second substance", "It is pure benzene only", "It is the mass of benzene", "It is the Cp value"], "It is frozen benzene with 1 gram of the second substance", "The screenshot notes describe T2 as frozen benzene with 1 gram of the second substance.");
+  missMcq(6, "The screenshot board labels W as the mass of what?", ["10 mL benzene", "10 mL water", "5 g NaCl", "1 L solution"], "10 mL benzene", "The screenshot says W is the mass of 10 mL benzene.");
+  missMulti(6, "Which compounds had visual chemical structures shown on the board screenshot?", ["benzene", "naphthalene", "acetone", "sodium chloride", "water only"], ["benzene", "naphthalene", "acetone"], "The board screenshot shows structures for benzene, naphthalene, and acetone.");
+
   const flashcards = [
     { exp: 1, front: "What does thermochemistry study?", back: "Heat or thermal energy changes that accompany chemical reactions.", note: "This is the opening definition for Experiment 1." },
     { exp: 1, front: "Neutralization pattern", back: "Acid + base -> salt + water.", note: "The PDF defines neutralization this way and gives NaOH/HCl and KOH/HNO3 examples." },
