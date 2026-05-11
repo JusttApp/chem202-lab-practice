@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chemistry 202 Lab Practice</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Experiment navigation">
+        <div class="brand">
+          <span class="brand-mark">202</span>
+          <div>
+            <h1>Chem Lab Practice</h1>
+            <p>Six experiments. Source-backed explanations.</p>
+          </div>
+        </div>
+        <nav id="experimentNav" class="experiment-nav"></nav>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Chemistry 202</p>
+            <h2 id="experimentTitle">Loading...</h2>
+            <p id="experimentSummary" class="summary"></p>
+          </div>
+          <div class="score-panel" aria-live="polite">
+            <span id="scoreText">0 / 0 correct</span>
+            <strong id="percentText">0%</strong>
+          </div>
+        </header>
+
+        <section class="controls" aria-label="Quiz controls">
+          <div class="segmented" role="group" aria-label="Question mode">
+            <button id="modePractice" class="active" type="button">Practice</button>
+            <button id="modeReview" type="button">Review</button>
+            <button id="modeFlashcards" type="button">Flashcards</button>
+            <button id="modeFormula" type="button">Formulas</button>
+          </div>
+          <label class="select-wrap">
+            <span>Question type</span>
+            <select id="typeFilter">
+              <option value="all">All types</option>
+              <option value="mcq">MCQ</option>
+              <option value="tf">True / False</option>
+              <option value="fill">Fill blank</option>
+              <option value="matching">Matching</option>
+              <option value="order">Ordering</option>
+              <option value="multi">Multi-select</option>
+            </select>
+          </label>
+          <button id="shuffleBtn" class="ghost" type="button">Shuffle</button>
+          <button id="resetBtn" class="ghost" type="button">Reset answers</button>
+        </section>
+
+        <section class="stats-strip" aria-label="Progress by type">
+          <div><span id="questionCount">0</span><small>questions shown</small></div>
+          <div><span id="answeredCount">0</span><small>answered</small></div>
+          <div><span id="wrongCount">0</span><small>need review</small></div>
+        </section>
+
+        <section id="missedSummary" class="missed-summary" aria-live="polite"></section>
+
+        <section id="questionList" class="question-list" aria-live="polite"></section>
+      </main>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
