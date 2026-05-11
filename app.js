@@ -252,7 +252,7 @@
       </div>
       <div class="action-row">
         <span></span>
-        <span class="source-note">Source: PDF summary, Experiment ${item.exp}.</span>
+        <span class="source-note">Experiment ${item.exp}</span>
       </div>
       <div class="feedback${answer ? ` show ${feedbackClass}` : ""}">
         ${answer ? renderFormulaFeedback(item, answer) : ""}
@@ -286,7 +286,7 @@
       </div>
       <div class="action-row">
         <button class="check-btn" type="button" data-action="flash">${shown ? "Hide answer" : "Reveal answer"}</button>
-        <span class="source-note">Source: PDF summary, Experiment ${card.exp}.</span>
+        <span class="source-note">Experiment ${card.exp}</span>
       </div>
     </article>`;
   }
@@ -369,7 +369,7 @@
     if (text.includes("5%") || text.includes("nacl")) return "5% NaCl";
     if (text.includes("kf") || text.includes("benzene") || text.includes("naphthalene")) return "Kf and freezing point";
     if (text.includes("formula")) return "chemical formulas";
-    return "source definition";
+    return "definition";
   }
 
   function renderAnswerArea(q, answer) {
